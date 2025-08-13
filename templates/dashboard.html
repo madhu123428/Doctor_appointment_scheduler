@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Flashcards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        h1 {
+            width: 100%;
+            text-align: center;
+            color: #6366f1;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .doctor-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flashcard {
+            background: transparent;
+            width: 220px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s ease;
+            transform-style: preserve-3d;
+        }
+
+        .flashcard:hover .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .flashcard-front img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background: white;
+        }
+
+        .flashcard-back {
+            background: #6366f1;
+            /* Indigo back */
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .doctor-name {
+            background-color: #6366f1;
+            /* Indigo name bar */
+            color: white;
+            font-weight: bold;
+            width: 220px;
+            padding: 8px 0;
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Meet Our Specialists</h1>
+
+    <!-- 10 doctors (mixed male/female) -->
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/female_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Cardiologist</h3>
+                    <p>15+ years experience</p>
+                    <p>Johns Hopkins Hospital</p>
+                    <p>Board Certified</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Emily Carter</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/male_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Neurologist</h3>
+                    <p>12+ years experience</p>
+                    <p>Mayo Clinic</p>
+                    <p>Specialist in stroke rehabilitation</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Michael Harris</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/female_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Pediatrician</h3>
+                    <p>10+ years experience</p>
+                    <p>Children’s National Hospital</p>
+                    <p>Certified in Pediatric Advanced Life Support</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Sarah Bennett</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/male_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Oncologist</h3>
+                    <p>18+ years experience</p>
+                    <p>MD Anderson Cancer Center</p>
+                    <p>Specialist in chemotherapy & immunotherapy</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. James O’Connor</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/female_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Dermatologist</h3>
+                    <p>8+ years experience</p>
+                    <p>Cleveland Clinic</p>
+                    <p>Specialist in skin cancer treatment</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Laura Mitchell</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/male_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Orthopedic Surgeon</h3>
+                    <p>20+ years experience</p>
+                    <p>Hospital for Special Surgery</p>
+                    <p>Expert in joint replacement</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Robert Lee</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="staic/female_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Endocrinologist</h3>
+                    <p>14+ years experience</p>
+                    <p>Mass General Hospital</p>
+                    <p>Specialist in diabetes & hormonal disorders</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Olivia Parker</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/male_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Gastroenterologist</h3>
+                    <p>11+ years experience</p>
+                    <p>Stanford Health Care</p>
+                    <p>Expert in digestive tract disorders</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Daniel Kim</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/female_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Ophthalmologist</h3>
+                    <p>9+ years experience</p>
+                    <p>Bascom Palmer Eye Institute</p>
+                    <p>Specialist in cataract & LASIK surgery</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. Rachel Green</div>
+    </div>
+
+    <div class="doctor-card">
+        <div class="flashcard">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <img src="static/male_doctor.png" alt="Doctor">
+                </div>
+                <div class="flashcard-back">
+                    <h3>Emergency Medicine</h3>
+                    <p>13+ years experience</p>
+                    <p>UCLA Medical Center</p>
+                    <p>ACLS & ATLS Certified</p>
+                </div>
+            </div>
+        </div>
+        <div class="doctor-name">Dr. David Thompson</div>
+    </div>
+
+</body>
+
+</html>

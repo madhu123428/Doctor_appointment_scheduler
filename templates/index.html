@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare AI Appointment Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark {
+            background: linear-gradient(to bottom right, #1f1f1f, #2a2f38);
+            color: #f5f5f5;
+        }
+
+        body.dark .bg-white,
+        body.dark .bg-indigo-50 {
+            background-color: #2a2a2a !important;
+        }
+
+        body.dark .text-gray-700,
+        body.dark .text-gray-600 {
+            color: #ccc !important;
+        }
+
+        body.dark input,
+        body.dark textarea {
+            background-color: #3a3a3a;
+            color: #fff;
+            border-color: #555;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            background: linear-gradient(to right, #8b5cf6, #6366f1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            width: 60px;
+            height: 30px;
+            background: #ccc;
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #6366f1;
+        }
+
+        .toggle-switch.active::before {
+            transform: translateX(30px);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 to-purple-100 min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-indigo-700">Healthcare AI Assistant</h1>
+        <div class="flex gap-4 items-center">
+            <a href="#personal-details-form" class="text-indigo-700 hover:text-indigo-900 font-medium">Book
+                Appointment</a>
+            <a href="#ai-form" class="text-indigo-700 hover:text-indigo-900 font-medium">Check Symptoms</a>
+            <a href="#features" class="text-indigo-700 hover:text-indigo-900 font-medium">Features</a>
+            <a href="dashboard.html" class="text-indigo-700 hover:text-indigo-900 font-medium">Doctor Dashboard</a>
+            <div id="mode-toggle" class="toggle-switch" title="Toggle Dark/Light Mode"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="flex flex-col md:flex-row items-center justify-between px-8 py-12 gap-10">
+        <div class="flex-1 max-w-xl fade-in">
+            <h2 class="text-4xl font-bold text-indigo-800 mb-4 leading-snug">
+                Book Appointments or Get Instant AI Health Advice
+            </h2>
+            <p class="text-gray-700 mb-6 text-lg">
+                Describe your symptoms, and our AI assistant will guide you to proper care or instantly book
+                appointments.
+            </p>
+            <a href="#personal-details-form" class="btn-primary inline-block">Try It Now</a>
+        </div>
+        <div class="flex-1 fade-in flex flex-col items-center">
+            <img src="static/adobe_express_file.png" alt="AI Healthcare" class="w-72 h-72 object-contain rounded-xl shadow-none" />
+            <p class="text-gray-600 text-sm mt-2">Powered by Smart AI & Healthcare Experts</p>
+        </div>
+    </main>
+
+    <!-- Step 1: Personal Details -->
+    <section id="personal-details-form"
+        class="bg-white py-14 px-6 md:px-16 fade-in rounded-xl mx-auto max-w-6xl shadow-lg">
+        <h3 class="text-3xl font-bold text-center text-indigo-700 mb-6 flex items-center justify-center gap-2">
+            Step 1: Enter Your Personal Information
+        </h3>
+        <form method="post" action="/submit-details" class="max-w-2xl mx-auto bg-indigo-50 p-6 rounded-xl shadow-md">
+            <div class="mb-4">
+                <label for="fullName" class="block mb-2 font-medium text-gray-700">Full Name</label>
+                <input type="text" id="fullName" name="name" placeholder="Full Name"
+                    class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <div class="mb-4">
+                <label for="age" class="block mb-2 font-medium text-gray-700">Age</label>
+                <input type="number" id="age" name="age" placeholder="Age"
+                    class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block mb-2 font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email"
+                    class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <div class="mb-6">
+                <label for="location" class="block mb-2 font-medium text-gray-700">Current Location (City/Town)</label>
+                <input type="text" id="location" name="location" placeholder="e.g., Bhopal"
+                    class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+            </div>
+            <button type="submit" class="btn-primary mt-4 w-full rounded-lg">Continue to Symptom Input</button>
+        </form>
+    </section>
+
+    <!-- Symptom Checker -->
+    <section id="ai-form" class="bg-white py-14 px-6 md:px-16 fade-in">
+        <h3 class="text-3xl font-bold text-center text-indigo-700 mb-6 flex items-center justify-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/943/943429.png" alt="Stethoscope" class="w-8 h-8" />
+            AI Symptom Checker
+        </h3>
+        <form class="max-w-2xl mx-auto bg-indigo-50 p-6 rounded-xl shadow-md">
+            <label for="symptoms" class="block mb-2 font-medium text-gray-700">Describe your symptoms:</label>
+            <textarea id="symptoms" rows="5" placeholder="e.g., sore throat, headache, mild fever..."
+                class="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none"></textarea>
+            <button type="button" onclick="showResponse()" class="btn-primary mt-4 w-full">Submit</button>
+            <div id="ai-response" class="mt-4 text-gray-700 font-medium hidden fade-in"></div>
+        </form>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-white py-14 px-6 md:px-16 fade-in">
+        <h3 class="text-3xl font-bold text-center text-indigo-700 mb-10">Why Choose Our AI Assistant?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+                class="p-6 shadow-md rounded-lg bg-indigo-50 flex flex-col items-center text-center transition hover:scale-105 duration-300">
+                <img src="https://cdn-icons-png.flaticon.com/512/3270/3270674.png" alt="Appointment"
+                    class="w-12 h-12 mb-3" />
+                <h4 class="text-xl font-semibold text-indigo-800 mb-2">Instant Booking</h4>
+                <p class="text-gray-600">Schedule appointments quickly and easily anytime, anywhere.</p>
+            </div>
+            <div
+                class="p-6 shadow-md rounded-lg bg-indigo-50 flex flex-col items-center text-center transition hover:scale-105 duration-300">
+                <img src="https://cdn-icons-png.flaticon.com/512/599/599502.png" alt="Reminder"
+                    class="w-12 h-12 mb-3" />
+                <h4 class="text-xl font-semibold text-indigo-800 mb-2">Smart Reminders</h4>
+                <p class="text-gray-600">Never miss a visit—get automatic reminders tailored for you.</p>
+            </div>
+            <div
+                class="p-6 shadow-md rounded-lg bg-indigo-50 flex flex-col items-center text-center transition hover:scale-105 duration-300">
+                <img src="https://cdn-icons-png.flaticon.com/512/4298/4298676.png" alt="Support"
+                    class="w-12 h-12 mb-3" />
+                <h4 class="text-xl font-semibold text-indigo-800 mb-2">24/7 Availability</h4>
+                <p class="text-gray-600">AI support that’s always available—whenever you need it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-[#1f1f1f] text-gray-700 dark:text-gray-300 mt-12 pt-10 px-6 md:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6 text-sm">
+            <div>
+                <h4 class="font-semibold text-lg mb-3 text-indigo-700 dark:text-indigo-400">Contact Us</h4>
+                <p>Email: <a href="mailto:support@healthai.com" class="hover:underline">support@healthai.com</a></p>
+                <p>Phone: +91 98765 43210</p>
+                <p>Address: 123 Health Street, AI City, India</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-3 text-indigo-700 dark:text-indigo-400">Quick Links</h4>
+                <ul class="space-y-1">
+                    <li><a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-300">Features</a></li>
+                    <li><a href="#ai-form" class="hover:text-indigo-600 dark:hover:text-indigo-300">Symptom Checker</a>
+                    </li>
+                    <li><a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">About Us</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-3 text-indigo-700 dark:text-indigo-400">Follow Us</h4>
+                <div class="flex gap-4 text-xl">
+                    <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300"><i
+                            class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-300"><i
+                            class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-300 dark:border-gray-600 pt-4 text-center text-xs">
+            <p>&copy; 2025 Healthcare AI Assistant. All rights reserved.</p>
+            <p>Designed with ❤ using Tailwind CSS</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        const toggleBtn = document.getElementById("mode-toggle");
+        const body = document.body;
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            toggleBtn.classList.toggle("active");
+        });
+
+        function showResponse() {
+            const input = document.getElementById("symptoms").value.trim();
+            const response = document.getElementById("ai-response");
+
+            if (input.length === 0) {
+                response.textContent = "⚠ Please enter your symptoms to get advice.";
+            } else {
+                response.textContent = "🩺 Based on your symptoms, it's advisable to consult a general physician. If symptoms worsen, seek specialist care.";
+            }
+
+            response.classList.remove("hidden");
+        }
+    </script>
+</body>
+
+</html>

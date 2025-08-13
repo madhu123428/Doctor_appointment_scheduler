@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment Confirmation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        body.dark {
+            background: linear-gradient(to bottom right, #1f1f1f, #2a2f38);
+            color: #f5f5f5;
+        }
+        body.dark .bg-white { background-color: #2a2a2a !important; }
+        body.dark .bg-indigo-50 { background-color: #312f4c !important; }
+        body.dark .text-gray-700, body.dark .text-gray-800 { color: #ccc !important; }
+        body.dark .text-indigo-700 { color: #818cf8 !important; }
+        body.dark .border-indigo-200 { border-color: #4f46e5; }
+        .btn-primary {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: scale(1.03);
+            background: linear-gradient(to right, #8b5cf6, #6366f1);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 to-purple-100 min-h-screen">
+
+    <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-indigo-700">Healthcare AI Assistant</h1>
+        <button id="mode-toggle" class="text-indigo-700 font-medium flex items-center gap-2 hover:text-indigo-900 rounded-md p-2">
+            <i id="mode-icon" class="fas fa-moon"></i>
+            <span id="mode-text">Dark Mode</span>
+        </button>
+    </header>
+
+    <main class="py-14 px-6">
+        <section class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg text-center">
+            <h2 class="text-3xl font-bold text-indigo-700 mb-4">
+                {% if data.get('current_step') == 'confirmed' %}
+                    🎉 Appointment Confirmed!
+                {% else %}
+                    🚨 Emergency Notification
+                {% endif %}
+            </h2>
+            <p class="mb-6 text-gray-700">{{ data.get('final_message', 'No message available.') }}</p>
+
+            {% if data.get('current_step') == 'confirmed' %}
+            <div class="text-left bg-indigo-50 p-6 rounded-lg border-l-4 border-indigo-200 space-y-3">
+                <p class="text-gray-800"><strong>Name:</strong> {{ data.name }}</p>
+                <p class="text-gray-800"><strong>Age:</strong> {{ data.age }}</p>
+                <p class="text-gray-800"><strong>Symptom:</strong> {{ data.symptom }}</p>
+                <p class="text-gray-800"><strong>Doctor Type:</strong> {{ data.doctor_type }}</p>
+                <p class="text-gray-800"><strong>Time Slot:</strong> {{ data.chosen_slot }}</p>
+            </div>
+            <a href="/generate-pdf" class="btn-primary mt-6">📄 Download Confirmation PDF</a>
+            {% endif %}
+        </section>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById("mode-toggle");
+        const body = document.body;
+        const icon = document.getElementById("mode-icon");
+        const text = document.getElementById("mode-text");
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                icon.classList.replace("fa-moon", "fa-sun");
+                text.textContent = "Light Mode";
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+                text.textContent = "Dark Mode";
+            }
+        });
+    </script>
+</body>
+</html>

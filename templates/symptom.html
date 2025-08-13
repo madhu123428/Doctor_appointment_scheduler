@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Describe Your Symptom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        body.dark {
+            background: linear-gradient(to bottom right, #1f1f1f, #2a2f38);
+            color: #f5f5f5;
+        }
+        body.dark .bg-white { background-color: #2a2a2a !important; }
+        body.dark .bg-indigo-50 { background-color: #312f4c !important; }
+        body.dark .text-gray-700, body.dark .text-gray-600 { color: #ccc !important; }
+        body.dark .text-indigo-700 { color: #818cf8 !important; }
+        body.dark input, body.dark textarea {
+            background-color: #3a3a3a;
+            color: #fff;
+            border-color: #555;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.03);
+            background: linear-gradient(to right, #8b5cf6, #6366f1);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-100 to-purple-100 min-h-screen">
+
+    <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <h1 class="text-2xl font-bold text-indigo-700">Healthcare AI Assistant</h1>
+        <button id="mode-toggle" class="text-indigo-700 font-medium flex items-center gap-2 hover:text-indigo-900 rounded-md p-2">
+            <i id="mode-icon" class="fas fa-moon"></i>
+            <span id="mode-text">Dark Mode</span>
+        </button>
+    </header>
+
+    <main class="py-14 px-6">
+        <section class="bg-white p-8 rounded-xl mx-auto max-w-2xl shadow-lg">
+            <h2 class="text-3xl font-bold text-center text-indigo-700 mb-6">Step 2: Describe Your Symptom</h2>
+            <form method="post" action="/submit-symptom" class="space-y-4 bg-indigo-50 p-6 rounded-xl">
+                <div>
+                    <label for="symptom" class="block text-gray-700 mb-2 font-medium">Please describe your main symptom in detail:</label>
+                    <textarea name="symptom" id="symptom" rows="5" placeholder="e.g., severe headache, persistent cough, chest pain..." required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-full py-3">Continue</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const toggleBtn = document.getElementById("mode-toggle");
+        const body = document.body;
+        const icon = document.getElementById("mode-icon");
+        const text = document.getElementById("mode-text");
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                icon.classList.replace("fa-moon", "fa-sun");
+                text.textContent = "Light Mode";
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+                text.textContent = "Dark Mode";
+            }
+        });
+    </script>
+</body>
+
+</html>
